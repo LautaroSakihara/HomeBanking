@@ -52,7 +52,7 @@ Vue.createApp({
                         headers: {
                             'content-type': 'application/x-www-form-urlencoded'
                         }
-                    })).then(()=>window.location.replace("http://localhost:8080/web/accounts.html"))
+                    })).then(()=>window.location.replace("/web/accounts.html"))
                     .catch(error => {
                       Swal.fire({
                         icon: 'error',
@@ -76,7 +76,7 @@ Vue.createApp({
             axios
               .post("/api/logout")
               .then((response) => console.log("signed out!!!"))
-              .then(()=>window.location.replace("http://localhost:8080/web/index.html"))
+              .then(()=>window.location.replace("/web/index.html"))
           },
     }
 

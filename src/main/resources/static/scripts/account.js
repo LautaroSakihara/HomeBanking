@@ -39,7 +39,7 @@ Vue.createApp({
             axios
               .post("/api/logout")
               .then((response) => console.log("signed out!!!"))
-              .then(()=>window.location.replace("http://localhost:8080/web/index.html"))
+              .then(()=>window.location.replace("/web/index.html"))
           },
           exportPDF() {
 
