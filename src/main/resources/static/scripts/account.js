@@ -16,7 +16,7 @@ Vue.createApp({
         const urlParams = new URLSearchParams(window.location.search);
         const idAccount = urlParams.get('id');
         
-        axios.get("http://localhost:8080/api/accounts/" + idAccount)
+        axios.get("/api/accounts/" + idAccount)
         
         .then(data => {
             this.accountTransactions = data.data.transactions.sort(function(a, b){return b.id - a.id})
@@ -25,7 +25,7 @@ Vue.createApp({
            
         })
         
-        axios.get("http://localhost:8080/api/clients/current")
+        axios.get("/api/clients/current")
         .then(data => {
             this.clients = data.data
             this.accountLoans = this.clients.loans

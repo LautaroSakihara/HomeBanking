@@ -23,7 +23,7 @@ Vue.createApp({
         })
         
         .then((response) => console.log("signed in!!!"))
-        .then(()=>window.location.replace("http://localhost:8080/web/accounts.html"))
+        .then(()=>window.location.replace("/web/accounts.html"))
         
         .catch(error =>{
           this.error="Incorrect Username or Password!!!"

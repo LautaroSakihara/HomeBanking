@@ -21,7 +21,7 @@ const app = Vue.createApp({
     },
     created() {
         
-        axios.get("http://localhost:8080/api/clients/current")
+        axios.get("/api/clients/current")
 
             .then(data => {
                 this.clients = data.data
@@ -37,7 +37,7 @@ const app = Vue.createApp({
             axios
               .post("/api/logout")
               .then((response) => console.log("signed out!!!"))
-              .then(()=>window.location.replace("http://localhost:8080/web/index.html"))
+              .then(()=>window.location.replace("/web/index.html"))
           },
           createTransaction(){
             Swal.fire({

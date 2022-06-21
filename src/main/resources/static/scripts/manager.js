@@ -17,7 +17,7 @@ Vue.createApp({
         }
     },
     created() {
-        axios.get("http://localhost:8080/rest/clients")
+        axios.get("/rest/clients")
             
             .then(data => {
                 
@@ -25,7 +25,7 @@ Vue.createApp({
                 this.dataJson = data.data
                 console.log(this.dataBase)
             })
-            axios.get("http://localhost:8080/api/clients/current")
+            axios.get("/api/clients/current")
             .then(data => {
                 this.clients = data.data
                 console.log(this.clients.firstName)
@@ -41,7 +41,7 @@ Vue.createApp({
                 email: this.email,
             }
             console.log(this.client)
-            axios.post("http://localhost:8080/rest/clients",this.client)
+            axios.post("/rest/clients",this.client)
             location.reload()
         }
         },
