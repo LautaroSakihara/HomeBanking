@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="lds-roller loader" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" id="sidebarColor">
+                    <div
+                        class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                        <a href="/"
+                            class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                            <span class="fs-5 d-none d-sm-inline">BrANKO</span>
+                        </a>
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                            id="menu">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link align-middle px-0">
+                                    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./accounts.html" class="nav-link px-0 align-middle">
+                                    <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Accounts</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./cards.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-brands fa-cc-visa fs-4"></i> <span class="ms-1 d-none d-sm-inline">Cards</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./create-cards.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-regular fa-credit-card fs-4"></i> <span class="ms-1 d-none d-sm-inline">Create
+                                        Card</span></a>
+                            </li>
+                            <li>
+                                <a href="./transfers.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-solid fa-wallet fs-4"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transfers</span></a>
+                            </li>
+                            <li>
+                                <a href="./loan-application.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-solid fa-money-bill-transfer fs-4"></i><span
+                                        class="ms-1 d-none d-sm-inline">Loan Application</span></a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="dropdown pb-4">
+                            <a href="#"
+                                class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person"></i>
+                                <span class="d-none d-sm-inline mx-1">{{clients.firstName}} {{clients.lastName}}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                                
+                                <li><a class="dropdown-item" v-on:click="logout">Sign out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+               <main>
+                <div>
+                    <div class="three">
+                        <h1 class="text-dark">WELCOME BACK {{clients.firstName}} {{clients.lastName}}</h1>
+                      </div>
+                    <section class="page-contain">
+                        <a href="./accounts.html" class="data-card">
+                          <h3>{{accounts.length}}</h3>
+                          <h4>Accounts</h4>
+                          <p>You have {{accounts.length}} active accounts</p>
+                          <span class="link-text">
+                            View Accounts
+                            <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="black"/>
+                      </svg>
+                          </span>
+                        </a>
+                        
+                        <a href="./cards.html" class="data-card">
+                          <h3>{{cards.length}}</h3>
+                          <h4>Cards</h4>
+                          <p>You have {{cards.length}} active cards</p>
+                          <span class="link-text">
+                            View Cards
+                            <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="black"/>
+                      </svg>
+                          </span>
+                        </a>
+
+                        <a href="./accounts.html" class="data-card">
+                            <h3>{{accountLoans.length}}</h3>
+                            <h4>Loans</h4>
+                            <p>You have {{accountLoans.length}} active loans</p>
+                            <span class="link-text">
+                              View Loans
+                              <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="black"/>
+                        </svg>
+                            </span>
+                          </a>
+                      </section>
+                </div>
+                   
+               </main>
+              
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a305851ba2.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="../scripts/accounts.js"></script>
+    
+
+</body>
+
+
+</html>

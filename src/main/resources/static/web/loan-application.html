@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="lds-roller loader" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" id="sidebarColor">
+                    <div
+                        class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                        <a href="/"
+                            class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                            <span class="fs-5 d-none d-sm-inline">BrANKO</span>
+                        </a>
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                            id="menu">
+                            <li class="nav-item">
+                                <a href="./home.html" class="nav-link align-middle px-0">
+                                    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./accounts.html" class="nav-link px-0 align-middle">
+                                    <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Accounts</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./cards.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-brands fa-cc-visa fs-4"></i> <span
+                                        class="ms-1 d-none d-sm-inline">Cards</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./create-cards.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-regular fa-credit-card fs-4"></i> <span
+                                        class="ms-1 d-none d-sm-inline">Create
+                                        Card</span></a>
+                            </li>
+                            <li>
+                                <a href="./transfers.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-solid fa-wallet fs-4"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transfers</span></a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle">
+                                    <i class="fa-solid fa-money-bill-transfer fs-4"></i><span
+                                        class="ms-1 d-none d-sm-inline">Loan Application</span></a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="dropdown pb-4">
+                            <a href="#"
+                                class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person"></i>
+                                <span class="d-none d-sm-inline mx-1">{{clients.firstName}} {{clients.lastName}}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+
+                                <li><a class="dropdown-item" v-on:click="logout">Sign out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <main class="d-flex justify-content-center align-items-center" style="width: 1024px">
+                    <form @submit.prevent="createLoan" class="card d-flex justify-content-center align-items-center" id="loanForm">
+                        <ul role="tablist" class="nav nav-pills rounded nav-fill mb-3" @change="filterPayments">
+                            <!-- <input type="radio" id="OWN" name="TransferType" value="OWN" v-model="type" required> -->
+                            <li class="nav-item nav-link text-dark">
+                                <input type="radio" name="LoanType" value="Hipotecario" v-model="loanType" required>
+                                <i class="fa-solid fa-building-columns mr-2 ms-1"></i>
+                                Hipotecario </li>
+                            <li class="nav-item nav-link text-dark">
+                                <input type="radio" name="LoanType" value="Personal" v-model="loanType" required>
+                                <i class="fab fa-paypal mr-2 ms-1"></i> Personal
+                            </li>
+                            <li class="nav-item nav-link text-dark">
+                                <input type="radio" name="LoanType" value="Automotriz" v-model="loanType" required>
+                                <i class="fa-solid fa-car mr-2 ms-1"></i>
+                                Automotriz
+                            </li>
+                        </ul>
+                        <div>
+                            <h4>Max Amount: ${{amountMax}}</h4>
+                            <div class="form-input-material mb-2">
+                                <h4>Loan Amount</h4>
+                                <label for="amount">Amount:</label>
+                                <input class="ms-2" type="number" id="amount" v-model="amount" required>
+                            </div>
+                            <div>
+                                <h4>Payments</h4>
+                                <select v-model="paymentSelected">
+                                    <option v-for="payment in payments" :value="payment">
+                                        {{payment}} | {{amount*1.20/payment}}</option>
+                                        
+
+                                </select>
+                            </div>
+
+                            <div>
+                                <h4>Account Destination</h4>
+                                <label for="text" class="me-1">Account Destiny:</label>
+                                <input type="text" id="text" v-model="accountNumberDestiny">
+                            </div>
+                            <button type="submit" style="width:100%"
+                                class="mt-2 btn btn-primary text-dark btn-ghost">Loan</button>
+                        </div>
+
+                    </form>
+                </main>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+
+
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/a305851ba2.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="../scripts/loan-application.js"></script>
+</body>
+
+</html>

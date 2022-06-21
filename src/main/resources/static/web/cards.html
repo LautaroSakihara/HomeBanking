@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="lds-roller loader" id="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" id="sidebarColor">
+                    <div
+                        class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                        <a href="/"
+                            class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                            <span class="fs-5 d-none d-sm-inline">BrANKO</span>
+                        </a>
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                            id="menu">
+                            <li class="nav-item">
+                                <a href="./home.html" class="nav-link align-middle px-0">
+                                    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./accounts.html" class="nav-link px-0 align-middle">
+                                    <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Accounts</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle">
+                                    <i class="fa-brands fa-cc-visa fs-4"></i> <span
+                                        class="ms-1 d-none d-sm-inline">Cards</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./create-cards.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-regular fa-credit-card fs-4"></i> <span
+                                        class="ms-1 d-none d-sm-inline">Create
+                                        Card</span></a>
+                            </li>
+                            <li>
+                                <a href="./transfers.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-solid fa-wallet fs-4"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transfers</span></a>
+                            </li>
+                            <li>
+                                <a href="./loan-application.html" class="nav-link px-0 align-middle">
+                                    <i class="fa-solid fa-money-bill-transfer fs-4"></i><span
+                                        class="ms-1 d-none d-sm-inline">Loan Application</span></a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="dropdown pb-4">
+                            <a href="#"
+                                class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person"></i>
+                                <span class="d-none d-sm-inline mx-1">{{clients.firstName}} {{clients.lastName}}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+
+                                <li><a class="dropdown-item" v-on:click="logout">Sign out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <main class="col-auto">
+                    <div class="mt-3">
+                        <form class="d-flex">
+                            <label class="switch d-flex align-items-end">
+                                <input type="checkbox" name="filtro" value="CREDIT" v-model="valueSelected">
+                                <span class="slider"></span>
+                            </label>
+                            <p class="text-dark">Credito</p>
+                            <label class="switch d-flex align-items-end ms-2">
+                                <input type="checkbox" name="filtro" value="DEBIT" v-model="valueSelected">
+                                <span class="slider"></span>
+                            </label>
+                            <p class="text-dark">Debito</p>
+                        </form>
+
+                    </div>
+                    <div class="row">
+                        <div v-if="valueSelected == 'CREDIT'" class="card2 border-0 me-5 ms-3"
+                            v-for="cards in accountCards.filter(card => card.type == 'CREDIT')">
+
+                            <div v-if="cards.color == 'GOLD'" class="card__front card__part gap-4">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 v-if="cards.type == 'DEBIT'">{{cards.type}}</h4>
+                                    <h4 class="text-dark" v-else-if="cards.type == 'CREDIT'">{{cards.type}}</h4>
+                                    <h4>GOLD</h4>
+                                </div>
+                                <p class="card_numer">{{cards.number}}</p>
+                                <div class="card__space-75">
+                                    <span class="card__label">Card holder</span>
+                                    <p class="card__info">{{cards.cardHolder}}</p>
+                                </div>
+                                <div class="card__space-25">
+                                    <span class="card__label">Expires</span>
+                                    <p class="card__info">{{cards.expirationDate}}</p>
+                                </div>
+                            </div>
+
+                            <div v-else-if="cards.color == 'TITANIUM'" class="card__front card__part2">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 v-if="cards.type == 'DEBIT'">{{cards.type}}</h4>
+                                    <h4 v-else-if="cards.type == 'CREDIT'">{{cards.type}}</h4>
+                                    <h4>TITANIUM</h4>
+                                </div>
+                                <p class="card_numer">{{cards.number}}</p>
+                                <div class="card__space-75">
+                                    <span class="card__label">Card holder</span>
+                                    <p class="card__info">{{cards.cardHolder}}</p>
+                                </div>
+                                <div class="card__space-25">
+                                    <span class="card__label">Expires</span>
+                                    <p class="card__info">{{cards.expirationDate}}</p>
+                                </div>
+                            </div>
+
+                            <div v-else-if="cards.color == 'SILVER'" class="card__front card__part3">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 v-if="cards.type == 'DEBIT'">{{cards.type}}</h4>
+                                    <h4 v-else-if="cards.type == 'CREDIT'">{{cards.type}}</h4>
+                                    <h4>SILVER</h4>
+                                </div>
+                                <p class="card_numer">{{cards.number}}</p>
+                                <div class="card__space-75">
+                                    <span class="card__label">Card holder</span>
+                                    <p class="card__info">{{cards.cardHolder}}</p>
+                                </div>
+                                <div class="card__space-25">
+                                    <span class="card__label">Expires</span>
+                                    <p class="card__info">{{cards.expirationDate}}</p>
+                                </div>
+                            </div>
+
+                            <div v-if="cards.color == 'GOLD'" class="card__back card__part">
+                                <div class="card__black-line"></div>
+                                <div class="card__back-content">
+                                    <div class="card__secret">
+                                        <p class="card__secret--last">{{cards.cvv}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div v-else-if="cards.color == 'TITANIUM'" class="card__back card__part2">
+                                <div class="card__black-line"></div>
+                                <div class="card__back-content">
+                                    <div class="card__secret">
+                                        <p class="card__secret--last">{{cards.cvv}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div v-else-if="cards.color == 'SILVER'" class="card__back card__part3">
+                                <div class="card__black-line"></div>
+                                <div class="card__back-content">
+                                    <div class="card__secret">
+                                        <p class="card__secret--last">{{cards.cvv}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div v-else-if="valueSelected == 'DEBIT'" class="card2 border-0 me-5 ms-3"
+                            v-for="cards in accountCards.filter(card => card.type == 'DEBIT')">
+
+                            <div v-if="cards.color == 'GOLD'" class="card__front card__part gap-4">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 v-if="cards.type == 'DEBIT'">{{cards.type}}</h4>
+                                    <h4 v-else-if="cards.type == 'CREDIT'">{{cards.type}}</h4>
+                                    <h4>GOLD</h4>
+                                </div>
+                                <p class="card_numer">{{cards.number}}</p>
+                                <div class="card__space-75">
+                                    <span class="card__label">Card holder</span>
+                                    <p class="card__info">{{cards.cardHolder}}</p>
+                                </div>
+                                <div class="card__space-25">
+                                    <span class="card__label">Expires</span>
+                                    <p class="card__info">{{cards.expirationDate}}</p>
+                                </div>
+                            </div>
+
+                            <div v-else-if="cards.color == 'TITANIUM'" class="card__front card__part2">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 v-if="cards.type == 'DEBIT'">{{cards.type}}</h4>
+                                    <h4 v-else-if="cards.type == 'CREDIT'">{{cards.type}}</h4>
+                                    <h4>TITANIUM</h4>
+                                </div>
+                                <p class="card_numer">{{cards.number}}</p>
+                                <div class="card__space-75">
+                                    <span class="card__label">Card holder</span>
+                                    <p class="card__info">{{cards.cardHolder}}</p>
+                                </div>
+                                <div class="card__space-25">
+                                    <span class="card__label">Expires</span>
+                                    <p class="card__info">{{cards.expirationDate}}</p>
+                                </div>
+                            </div>
+
+                            <div v-else-if="cards.color == 'SILVER'" class="card__front card__part3">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 v-if="cards.type == 'DEBIT'">{{cards.type}}</h4>
+                                    <h4 v-else-if="cards.type == 'CREDIT'">{{cards.type}}</h4>
+                                    <h4>SILVER</h4>
+                                </div>
+                                <p class="card_numer">{{cards.number}}</p>
+                                <div class="card__space-75">
+                                    <span class="card__label">Card holder</span>
+                                    <p class="card__info">{{cards.cardHolder}}</p>
+                                </div>
+                                <div class="card__space-25">
+                                    <span class="card__label">Expires</span>
+                                    <p class="card__info">{{cards.expirationDate}}</p>
+                                </div>
+                            </div>
+
+                            <div v-if="cards.color == 'GOLD'" class="card__back card__part">
+                                <div class="card__black-line"></div>
+                                <div class="card__back-content">
+                                    <div class="card__secret">
+                                        <p class="card__secret--last">{{cards.cvv}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div v-else-if="cards.color == 'TITANIUM'" class="card__back card__part2">
+                                <div class="card__black-line"></div>
+                                <div class="card__back-content">
+                                    <div class="card__secret">
+                                        <p class="card__secret--last">{{cards.cvv}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div v-else-if="cards.color == 'SILVER'" class="card__back card__part3">
+                                <div class="card__black-line"></div>
+                                <div class="card__back-content">
+                                    <div class="card__secret">
+                                        <p class="card__secret--last">{{cards.cvv}}</p>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div v-else class="card2 border-0 me-5 ms-3" v-for="cards in accountCards">
+
+                            <div v-if="cards.color == 'GOLD'" class="card__front card__part gap-4">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 v-if="cards.type == 'DEBIT'">{{cards.type}}</h4>
+                                    <h4 v-else-if="cards.type == 'CREDIT'">{{cards.type}}</h4>
+                                    <h4>GOLD</h4>
+                                </div>
+                                <p class="card_numer">{{cards.number}}</p>
+                                <div class="card__space-75">
+                                    <span class="card__label">Card holder</span>
+                                    <p class="card__info">{{cards.cardHolder}}</p>
+                                </div>
+                                <div class="card__space-25">
+                                    <span class="card__label">Expires</span>
+                                    <p class="card__info">{{cards.expirationDate}}</p>
+                                </div>
+                            </div>
+
+                            <div v-else-if="cards.color == 'TITANIUM'" class="card__front card__part2">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 v-if="cards.type == 'DEBIT'">{{cards.type}}</h4>
+                                    <h4 v-else-if="cards.type == 'CREDIT'">{{cards.type}}</h4>
+                                    <h4>TITANIUM</h4>
+                                </div>
+                                <p class="card_numer">{{cards.number}}</p>
+                                <div class="card__space-75">
+                                    <span class="card__label">Card holder</span>
+                                    <p class="card__info">{{cards.cardHolder}}</p>
+                                </div>
+                                <div class="card__space-25">
+                                    <span class="card__label">Expires</span>
+                                    <p class="card__info">{{cards.expirationDate}}</p>
+                                </div>
+                            </div>
+
+                            <div v-else-if="cards.color == 'SILVER'" class="card__front card__part3">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 v-if="cards.type == 'DEBIT'">{{cards.type}}</h4>
+                                    <h4 v-else-if="cards.type == 'CREDIT'">{{cards.type}}</h4>
+                                    <h4>SILVER</h4>
+                                </div>
+                                <p class="card_numer">{{cards.number}}</p>
+                                <div class="card__space-75">
+                                    <span class="card__label">Card holder</span>
+                                    <p class="card__info">{{cards.cardHolder}}</p>
+                                </div>
+                                <div class="card__space-25">
+                                    <span class="card__label">Expires</span>
+                                    <p class="card__info">{{cards.expirationDate}}</p>
+                                </div>
+                            </div>
+
+                            <div v-if="cards.color == 'GOLD'" class="card__back card__part">
+                                <div class="card__black-line"></div>
+                                <div class="card__back-content">
+                                    <div class="card__secret">
+                                        <p class="card__secret--last">{{cards.cvv}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div v-else-if="cards.color == 'TITANIUM'" class="card__back card__part2">
+                                <div class="card__black-line"></div>
+                                <div class="card__back-content">
+                                    <div class="card__secret">
+                                        <p class="card__secret--last">{{cards.cvv}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div v-else-if="cards.color == 'SILVER'" class="card__back card__part3">
+                                <div class="card__black-line"></div>
+                                <div class="card__back-content">
+                                    <div class="card__secret">
+                                        <p class="card__secret--last">{{cards.cvv}}</p>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <!-- Button trigger modal -->
+                    <button v-show="accountCards.length > 0" type="button" id="deleteCard" class="btn btn-primary text-dark" data-bs-toggle="modal"
+                         data-bs-target="#staticBackdrop">
+                        Want to delete cards?</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Cards</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Select card number
+                                    <select class="nav-item dropdown" v-model="id" id="state">
+                                        <option v-for="cards in accountCards" v-bind:value="cards.id">
+                                            {{cards.number}}|{{cards.type}}|{{cards.color}}</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light text-dark"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger text-dark" @click="deletCard">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="cards.length < 6" class="mt-5">
+                        <a id="needAccount" href="./create-cards.html" class="text-dark">Need a card? Click here</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/a305851ba2.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="../scripts/cards.js"></script>
+</body>
+
+</html>
