@@ -29,7 +29,7 @@ Vue.createApp({
                 this.cardTransaction= this.accountCards
                 this.credit = this.accountCards.filter(card => card.type == 'CREDITO')
                 this.debit = this.accountCards.filter(card => card.type == 'DEBITO')
-                console.log(this.cardTransaction)
+              /*   console.log(this.cardTransaction) */
                 
 
                 const form = document.querySelector("form")
@@ -45,7 +45,7 @@ Vue.createApp({
                     //Se obtiene el valor de los checkboxes seleccionados utilizando map ("DEBITO","CREDITO")
                     let valueSelected = checkboxSelected.map(checkbox => checkbox.value)
 
-                    console.log(valueSelected)
+                   /*  console.log(valueSelected) */
 
                     this.credit = this.accountCards.filter(card => card.type == 'CREDITO')
                     this.debit = this.accountCards.filter(card => card.type == 'DEBITO')

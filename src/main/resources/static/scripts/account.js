@@ -21,7 +21,7 @@ Vue.createApp({
         .then(data => {
             this.accountTransactions = data.data.transactions.sort(function(a, b){return b.id - a.id})
             this.account = data.data
-            console.log(this.account.number)
+            /* console.log(this.account.number) */
            
         })
         

@@ -27,8 +27,8 @@ const app = Vue.createApp({
                 this.accountCards = this.clients.cards
                 this.credit= this.accountCards.filter(card => card.type =='CREDITO')
                 this.debit= this.accountCards.filter(card => card.type =='DEBITO')
-                console.log(this.clients.cards)
-                console.log(this.debit)
+               /*  console.log(this.clients.cards)
+                console.log(this.debit) */
                 document.querySelector("#loader").classList.toggle("loader2") 
             })
             

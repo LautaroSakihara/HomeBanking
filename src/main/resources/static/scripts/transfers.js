@@ -28,7 +28,7 @@ const app = Vue.createApp({
 
                 this.accounts = this.clients.account
                 
-                console.log(this.accounts[0].balance)
+                /* console.log(this.accounts[0].balance) */
                 document.querySelector("#loader").classList.toggle("loader2") 
             })
         },
@@ -77,7 +77,7 @@ const app = Vue.createApp({
         },
         balance(){
           this.accountBalance=this.accounts.filter(account => account.number == this.numberOwn)[0].balance
-          console.log(this.accountBalance)
+          /* console.log(this.accountBalance) */
         }
         
     }

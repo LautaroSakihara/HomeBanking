@@ -24,7 +24,7 @@ Vue.createApp({
                     return a.id - b.id
                 })
                 this.accountLoans = this.clients.loans
-                console.log(this.clients.loans)
+                /* console.log(this.clients.loans) */
                 document.querySelector("#loader").classList.toggle("loader2") 
             })
     },

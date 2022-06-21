@@ -23,12 +23,12 @@ Vue.createApp({
                 
                 this.dataBase = data.data._embedded.clients
                 this.dataJson = data.data
-                console.log(this.dataBase)
+                /* console.log(this.dataBase) */
             })
             axios.get("/api/clients/current")
             .then(data => {
                 this.clients = data.data
-                console.log(this.clients.firstName)
+                /* console.log(this.clients.firstName) */
             })
     },
 
@@ -40,15 +40,15 @@ Vue.createApp({
                 lastName: this.lastName,
                 email: this.email,
             }
-            console.log(this.client)
+            /* console.log(this.client) */
             axios.post("/rest/clients",this.client)
             location.reload()
         }
         },
 
         deleteClient(client) {
-            console.log(client)
-            console.log(client._links.client.href)
+           /*  console.log(client)
+            console.log(client._links.client.href) */
             let id = client._links.client.href
             axios.delete(id) 
             location.reload()
@@ -61,7 +61,7 @@ Vue.createApp({
                 lastName: this.lastNameEdit,
                 email: this.emailEdit,
             } 
-            console.log(client)
+         /*    console.log(client) */
             axios.put(id,client)
             location.reload()
         }

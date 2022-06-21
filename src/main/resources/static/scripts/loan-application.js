@@ -29,7 +29,7 @@ const app = Vue.createApp({
       
       this.accounts = this.clients.account
       document.querySelector("#loader").classList.toggle("loader2") 
-      console.log(this.clients)
+      /* console.log(this.clients) */
       
     })
     
@@ -37,7 +37,7 @@ const app = Vue.createApp({
     
     .then(data => {
       this.loans = data.data   
-      console.log(this.loans)
+      /* console.log(this.loans) */
       
       })
   },
@@ -91,8 +91,8 @@ const app = Vue.createApp({
       this.payments = availableLoans.filter(loan => loan.name == this.loanType)[0].payments;
       this.loanId = availableLoans.filter(loan => loan.name == this.loanType)[0].id;
       this.amountMax = this.loans.filter(loan => loan.id == this.loanId)[0].maxAmount;
-      console.log(this.payments)
-      console.log(this.loanId)
+     /*  console.log(this.payments)
+      console.log(this.loanId) */
     }
 
   }
