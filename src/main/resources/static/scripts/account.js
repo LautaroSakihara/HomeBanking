@@ -63,7 +63,7 @@ Vue.createApp({
               {title: "Description", dataKey: "description"},
             ];
             var doc = new jsPDF('p', 'pt');
-            doc.text(`${this.account.number} transactions list from ${this.fromDate} to ${this.toDate}`, 40, 40);
+            doc.text(`${this.account.number}`, 40, 40);
             doc.autoTable(columns, this.transactionsPdf, {
               margin: {top: 60},
             });
