@@ -33,7 +33,7 @@ const app = Vue.createApp({
       
     })
     
-    axios.get("http://localhost:8080/api/loans")
+    axios.get("/api/loans")
     
     .then(data => {
       this.loans = data.data   
