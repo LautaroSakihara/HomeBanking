@@ -21,7 +21,6 @@ class WebAuthorization extends WebSecurityConfigurerAdapter {// hereda Del confi
     // para sobrescribir el método configure indicando la nueva configuración de autorización
 
     @Override
-
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()

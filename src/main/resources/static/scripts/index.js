@@ -23,7 +23,7 @@ Vue.createApp({
         })
         
         .then((response) => console.log("signed in!!!"))
-        .then(()=>window.location.replace("/web/accounts.html"))
+        .then(()=>window.location.href="/web/accounts.html")
         
         .catch(error =>{
           this.error="Incorrect Username or Password!!!"
@@ -49,9 +49,9 @@ Vue.createApp({
       axios.post('/api/clients',`firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`,
       {headers:{'content-type':'application/x-www-form-urlencoded'}})
       .then(() => {
-        this.login()
         this.createAccount()
-      })
+        /* this.login() */
+      }).then(() => this.login())
       .catch(error =>console.warn(error))
     }
   },

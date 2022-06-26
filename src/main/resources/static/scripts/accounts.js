@@ -52,7 +52,13 @@ Vue.createApp({
                         headers: {
                             'content-type': 'application/x-www-form-urlencoded'
                         }
-                    })).then(()=>window.location.replace("/web/accounts.html"))
+                    })).then(()=>{Swal.fire(
+        
+                      'Account Deleted Succesfully!',
+                      'Your Account has been deleted.',
+                      'success'
+                    ).then(()=>
+                    window.location.replace("/web/accounts.html"))})
                     .catch(error => {
                       Swal.fire({
                         icon: 'error',
@@ -60,12 +66,7 @@ Vue.createApp({
         
                       })
                     })
-                  Swal.fire(
-        
-                    'Account Deleted Succesfully!',
-                    'Your Account has been deleted.',
-                    'success'
-                  )
+                  
         
                 }
         

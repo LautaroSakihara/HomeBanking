@@ -16,11 +16,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-
-    private String password;
+    private String firstName,lastName,password,email;
 
     @OneToMany(mappedBy="client", fetch=FetchType.EAGER) //Indica que la relación debe de ser cargada al momento de cargar la entidad.
     //LAZY indica que la relación solo se cargará cuando la propiedad sea leída por primera vez.
