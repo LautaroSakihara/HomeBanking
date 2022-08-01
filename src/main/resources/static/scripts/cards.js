@@ -58,7 +58,7 @@ Vue.createApp({
             axios
                 .post("/api/logout")
                 .then((response) => console.log("signed out!!!"))
-                .then(() => window.location.replace("http://localhost:8080/web/index.html"))
+                .then(() => window.location.replace("/web/index.html"))
         },
         deletCard() {
             Swal.fire({
@@ -76,7 +76,7 @@ Vue.createApp({
                         headers: {
                             'content-type': 'application/x-www-form-urlencoded'
                         }
-                    })).then(()=>window.location.replace("http://localhost:8080/web/cards.html"))
+                    })).then(()=>window.location.replace("/web/cards.html"))
                     .catch(error => {
                       Swal.fire({
                         icon: 'error',
